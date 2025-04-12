@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Reservation Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f8fa;
+            padding: 40px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        form {
+            max-width: 600px;
+            margin: auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h3 {
+            color: #2980b9;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #34495e;
+        }
+
+        input[type="text"],
+        input[type="date"] {
+            width: 100%;
+            padding: 8px 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            margin-top: 25px;
+            background-color: #27ae60;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #219150;
+        }
+
+        h4 {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h2>Reservation Form</h2>
+
+    <h4 th:text="${message}" style="color: green;"></h4>
+
+    <form action="/process-form" method="post" th:object="${reservation}">
+
+        <h3>Reservation</h3>
+        <label>Flight Details:</label>
+        <input type="text" th:field="*{details}" />
+
+        <label>Ticket Number:</label>
+        <input type="text" th:field="*{ticketNumber}" />
+
+        <label>Flight Date:</label>
+        <input type="date" th:field="*{date}" />
+
+        <h3>Customer</h3>
+        <label>Address:</label>
+        <input type="text" th:field="*{customer.address}" />
+
+        <label>Reservation Info:</label>
+        <input type="text" th:field="*{customer.reservation}" />
+
+        <label>Details:</label>
+        <input type="text" th:field="*{customer.details}" />
+
+        <h3>Payment</h3>
+        <label>Amount:</label>
+        <input type="text" th:field="*{payment.amount}" />
+
+        <label>Payment Date:</label>
+        <input type="date" th:field="*{payment.date}" />
+
+        <input type="submit" value="Submit"/>
+    </form>
+</body>
+</html>
